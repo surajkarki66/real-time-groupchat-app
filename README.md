@@ -1,1 +1,1 @@
-# real-time-polling-app
+# real-time-group-chat-app
