@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+      integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Chitchat</title>
+  </head>
+  <body>
+    <div class="join-container">
+      <header class="join-header">
+        <h1><i class="fab fa-rocketchat"></i> Chitchat</h1>
+      </header>
+      <main class="join-main">
+        <form action="chat.html" id="joinForm">
+          <div class="form-control">
+            <label for="username">Name</label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              placeholder="Enter name..."
+              required
+            />
+          </div>
+          <div class="form-control">
+            <label for="room">Room Id</label>
+            <input
+              type="text"
+              name="room"
+              id="room"
+              placeholder="Enter room id..."
+              required
+            />
+          </div>
+          <button type="submit" class="btn" id="joinBtn">Join Room</button>
+          <span id="divider"> --------------- OR --------------- </span>
+          <button class="btn btn-create" id="createBtn">Create Room</button>
+        </form>
+      </main>
+    </div>
+
+    <script>
+      function generateRandomId(length) {
+        const characters =
+          "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        let randomId = "";
+        for (let i = 0; i < length; i++) {
+          randomId += characters.charAt(
+            Math.floor(Math.random() * characters.length)
+          );
+        }
+        return randomId;
+      }
+      document.addEventListener("DOMContentLoaded", function () {
+        const joinForm = document.getElementById("joinForm");
+        const nameInput = document.getElementById("name");
+        const roomInput = document.getElementById("room");
+        const createBtn = document.getElementById("createBtn");
+
+        roomInput.value = "";
+        nameInput.value = "";
+
+        createBtn.addEventListener("click", function (event) {
+          event.preventDefault();
+
+          if (!nameInput.value) {
+            alert("Please enter the username!");
+          } else {
+            roomInput.value = generateRandomId(6);
+            joinForm.submit();
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
