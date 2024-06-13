@@ -43,14 +43,14 @@ io.on("connection", (socket) => {
     socket.join(user.room);
 
     // Welcome current user
-    socket.emit("message", formatMessage(botName, "Welcome to Chitchat!"));
+    socket.emit("message", formatMessage(botName, "Welcome to Chitchat! Your room id is " + user.room));
 
     // Broadcast when a user connects
     socket.broadcast
       .to(user.room)
       .emit(
         "message",
-        formatMessage(botName, `${user.username} has joined the chat`)
+        formatMessage(botName, `${user.name} has joined the chat`)
       );
 
     // Send users and room info
@@ -73,7 +73,7 @@ io.on("connection", (socket) => {
     if (user) {
       io.to(user.room).emit(
         "message",
-        formatMessage(botName, `${user.username} has left the chat`)
+        formatMessage(botName, `${user.name} has left the chat`)
       );
 
       // Send users and room info
