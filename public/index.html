@@ -59,11 +59,13 @@
         }
         return randomId;
       }
+
       document.addEventListener("DOMContentLoaded", function () {
         const joinForm = document.getElementById("joinForm");
         const nameInput = document.getElementById("name");
         const roomInput = document.getElementById("room");
         const createBtn = document.getElementById("createBtn");
+        const joinBtn = document.getElementById("joinBtn");
 
         roomInput.value = "";
         nameInput.value = "";
@@ -72,9 +74,19 @@
           event.preventDefault();
 
           if (!nameInput.value) {
-            alert("Please enter the username!");
+            alert("Please enter the name!");
           } else {
             roomInput.value = generateRandomId(6);
+            joinForm.submit();
+          }
+        });
+
+        joinBtn.addEventListener("click", function (event) {
+          event.preventDefault();
+
+          if (roomInput.value.length !== 6) {
+            alert("Please enter a valid room id!");
+          } else {
             joinForm.submit();
           }
         });

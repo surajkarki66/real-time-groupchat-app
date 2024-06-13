@@ -8,7 +8,7 @@ const qParams = Qs.parse(location.search, {
   ignoreQueryPrefix: true,
 });
 
-const Name = qParams["?name"];
+const Name = qParams.name;
 const room = qParams.room
 
 const socket = io();
@@ -24,7 +24,6 @@ socket.on('roomUsers', ({ room, users }) => {
 
 // Message from server
 socket.on('message', (message) => {
-  console.log(message);
   outputMessage(message);
 
   // Scroll down
@@ -58,7 +57,7 @@ function outputMessage(message) {
   div.classList.add('message');
   const p = document.createElement('p');
   p.classList.add('meta');
-  p.innerText = message.username;
+  p.innerText = message.name + " @ ";
   p.innerHTML += `<span>${message.time}</span>`;
   div.appendChild(p);
   const para = document.createElement('p');
@@ -78,7 +77,7 @@ function outputUsers(users) {
   userList.innerHTML = '';
   users.forEach((user) => {
     const li = document.createElement('li');
-    li.innerText = user.username;
+    li.innerText = user.name;
     userList.appendChild(li);
   });
 }
