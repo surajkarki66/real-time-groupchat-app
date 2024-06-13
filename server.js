@@ -7,7 +7,7 @@ const redis = require("redis");
 const { createClient } = redis;
 
 const {
-  NodeENV,
+  NODE_ENV,
   PORT,
   REDIS_DEV_CLIENT_URL,
   REDIS_PROD_CLIENT_URL,
@@ -30,7 +30,7 @@ app.use(express.static(path.join(__dirname, "public")));
 (async () => {
   pubClient = createClient({
     url:
-      NodeENV === "production" ? REDIS_PROD_CLIENT_URL : REDIS_DEV_CLIENT_URL,
+      NODE_ENV === "production" ? REDIS_PROD_CLIENT_URL : REDIS_DEV_CLIENT_URL,
   });
   await pubClient.connect();
   subClient = pubClient.duplicate();
@@ -84,6 +84,5 @@ io.on("connection", (socket) => {
     }
   });
 });
-
 
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
