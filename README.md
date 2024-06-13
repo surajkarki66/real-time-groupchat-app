@@ -4,6 +4,9 @@
 
 Chitchat is a real-time group chat web application built using HTML, CSS, JavaScript and Socket.io. This facilitates user to create room or join the existing room, where they can communicate with other users using messages.
 
+## Live Demo
+[Click Here](https://chitchat-0zpv.onrender.com)
+
 ## Local Installation
 
 1. Make sure you have redis server up and running.
